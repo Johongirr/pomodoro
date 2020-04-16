@@ -1,0 +1,292 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+/* general styles */
+button,span {
+    transition: all 0.8s;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+input,button,span {
+    display: inline-block;
+}
+
+.container {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* pomodoro header */
+#pomodoro {
+    background-color: rgb(245, 116, 116);
+}
+#pomodoro__header {
+    background-color: rgb(228, 135, 151);
+    color: #fff;
+    padding: 2rem 0;
+   
+}
+#pomodoro__header .pomodoro__title {
+    font-size: 2.5rem;
+}
+#pomodoro__header .pomodoro__settings {
+    background-color: rgb(150, 28, 46);
+    padding: 0.6rem 2rem;
+    letter-spacing: 4px;
+    cursor: pointer;
+}
+#pomodoro__header .pomodoro__settings:hover {
+    background-color: rgb(129, 20, 36);
+} 
+
+ 
+/* pomodoro sessions */
+#pomodoro__sessions {
+    text-align: center;
+    margin-top: 1.1rem;
+}
+ 
+ 
+#pomodoro__sessions #pomodoro__timer {
+    font-size: 7rem;
+    margin: 1rem 0 3rem 0
+}
+#pomodoro__sessions .pomodoro__buttons {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    justify-content: space-evenly;
+}
+#pomodoro__sessions button {
+    padding: 0.8rem 2rem;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    border: 0;
+    color: #fff;
+}
+#pomodoro__sessions .pomodoro__timers button {
+    background-color: rgb(150, 28, 46);
+    padding: 0.6rem 2rem;
+}
+#pomodoro__sessions #start {
+    background-color: green;
+}
+#pomodoro__sessions #pause {
+    background-color: blue;
+}
+#pomodoro__sessions #reset {
+    background-color: brown;
+}
+/* pomodoro goals */
+#pomodoro__goals {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+#pomodoro__goals > *{
+    margin-right: 0.6rem;
+}
+#pomodoro__goals .pomodoro__pic {
+   border: 3px solid red;
+   background-color: red;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   opacity: 0.2;   
+}
+
+/* pomodoro footer */
+#pomodoro__footer {
+    padding: 4rem 0 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+#pomodoro__footer h2 {
+    margin-bottom: 0.8rem;
+}
+#pomodoro__footer > div {
+    flex: 1;
+    background-color: rgb(231, 129, 150);
+    padding: 2rem 3rem;
+}
+#pomodoro__footer div:nth-child(1){
+    margin-right: 1rem;
+}
+#pomodoro__footer kbd {
+    font-size: 1.5rem;
+    font-weight: 900;
+
+    margin-right: 1rem;
+}
+
+/* settings */
+ 
+ 
+#settings-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(192, 88, 105);
+    display: none;
+   
+}
+#settings-container.show {
+    display: block;
+}
+.settings {
+    padding: 4rem 4rem 0 0;
+    width: 100%;
+    color: #fff;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.settings h2 {
+    font-size: 2rem; 
+    text-align: center;
+    margin-bottom: 1rem;  
+}
+.settings .input-flex {
+    flex: 1;
+    margin: 0 0.5rem;
+}
+.settings .input-group {
+    margin-bottom: 3rem;
+}
+.settings  .mb-1 {
+    margin-bottom:0.6rem;
+}
+.form-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.settings button {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: rgb(170, 19, 45);
+    border: none;
+    color: #fff;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+.settings input {
+    background-color: transparent;
+}
+#settings-container button#cancel {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    background-color:  rgb(170, 19, 45);
+    cursor: pointer;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: 0;
+}
+
+/* styling input type range */
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: rgb(224, 50, 108);
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 20px;
+    border-radius: 4px;
+    background: rgb(170, 19, 45);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+  }
