@@ -90,6 +90,10 @@ input,button,span {
 #pomodoro__sessions #reset {
     background-color: brown;
 }
+#pomodoro__sessions #pomodoro__session-title {
+    font-size: 2.3rem;
+    letter-spacing: 3px;
+}
 /* pomodoro goals */
 #pomodoro__goals {
     display: flex;
@@ -107,7 +111,9 @@ input,button,span {
    border-radius: 50%;
    opacity: 0.2;   
 }
-
+#pomodoro__goals .pomodoro__pic.finished {
+    opacity: 1;
+}
 /* pomodoro footer */
 #pomodoro__footer {
     padding: 4rem 0 2rem 0;

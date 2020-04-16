@@ -24,14 +24,16 @@ const shortBreakTimerLength = document.querySelector('.short-break-length');
 const longBreakLengthTimer = document.querySelector('.long-break-length');
 const pomodoroSessionsAmount = document.querySelector('.pomodoro-goal');
 const pomdoroGoals = document.getElementById('pomodoro__goals');
+const pomodoroWorkTypeTitle = document.getElementById('pomodoro__session-title');
 // time that type timers hold
 const sessionTime = document.getElementById('pomodoro-timer');
 const shortBreakTime = document.getElementById('short-break');
 const longBreakTime = document.getElementById('long-break');
 
 let isMenuOpen = false;
-
+let isGoalsSet= false;
 let secondsLeft;
+let lengthSessions;
 let countdown;
 const timerType = {
     sessionIsOn: true,
@@ -45,15 +47,19 @@ const timerType = {
 function startTimer(){
     
     if(timerType.sessionIsOn){
+        
         startPomodoro(sessionTime.dataset.session,sessionTime.id);
     }else if(timerType.shortBreakOn) {
+         
         startPomodoro(shortBreakTime.dataset.short_break,shortBreakTime.id);
     } else if(timerType.longBreakOn) {
+        
+        
         startPomodoro(longBreakTime.dataset.long_break,longBreakTime.id)
     }
 }
 function startPomodoro(seconds,element){
-    console.log(element)
+  
     clearInterval(countdown);
     const now = Date.now();
     const then = now + seconds * 1000;
@@ -71,30 +77,83 @@ function startPomodoro(seconds,element){
     }, 1000);
 }
 function checkTimerType(element){
-    console.log(pomodroSessionsLength())
+      
+         console.log(lengthSessions)
+    
+        if(isGoalsSet){
+            doGoalsCount(element);
+        } else {
+            callAlternatively(element);
+        }
+   
+}
+function callAlternatively(element){
     switch(element){
         case 'pomodoro-timer':
-       
+
             timerType.sessionIsOn = false;
+            timerType.longBreakOn = false;
             timerType.shortBreakOn = true;
+            
             startPomodoro(shortBreakTime.dataset.default_short_break, shortBreakTime.id);
+            
         break;
         case 'short-break':
-         
+
             timerType.shortBreakOn = false;
+            timerType.sessionIsOn = false;
             timerType.longBreakOn = true;
+             
             startPomodoro(longBreakTime.dataset.default_long_break,longBreakTime.id);
         break;
         case 'long-break':
-         
-            timerType.longBreakOn = false;
+            timerType.shortBreakOn = false;
             timerType.sessionIsOn = true;
-            startPomodoro(sessionTime.dataset.default_session, sessionTime.id);
+            timerType.longBreakOn = false;
+            startPomodoro(sessionTime.dataset.default_session,sessionTime.id);
         break;
+        
+    }
+     
+}
+function doGoalsCount(element) {
+    switch(element){
+        case 'pomodoro-timer':
+
+            timerType.sessionIsOn = false;
+            timerType.shortBreakOn = true;
+            checkGoals();
+            
+            startPomodoro(shortBreakTime.dataset.default_short_break, shortBreakTime.id);
+            
+        break;
+        case 'short-break':
+
+            timerType.shortBreakOn = false;
+            timerType.sessionIsOn = true;
+             
+            startPomodoro(sessionTime.dataset.default_session,sessionTime.id);
+        break;
+        
+    }
+    if(lengthSessions < 0){
+         
+           timerType.sessionIsOn = false;
+           timerType.shortBreakOn = false;
+           timerType.longBreakOn = true;
+        
+           startPomodoro(longBreakTime.dataset.default_long_break,longBreakTime.id);
     }
 }
+function checkGoals(){
+    if(pomdoroGoals.children.length > 0){
+        pomdoroGoals.children[lengthSessions].classList.add('finished');
+        lengthSessions--;
+    }
+    return;
+}
 function pomodroSessionsLength(){
-    pomdoroGoals.children.length;
+   return pomdoroGoals.children.length;
 }
 function displayTime(seconds){
     const minutes = Math.floor(seconds / 60);
@@ -168,7 +227,7 @@ function saveChanges(){
     settingsContainer.style.display = 'none';
 }
 function updatePomodoroSessions(){
-     pomdoroGoals = document.getElementById('pomodoro__goals');
+   
     removePreviousSessions(pomdoroGoals)
     const sessionsLength = pomodoroSessionsAmount.textContent.trim().slice(0,1) 
      
@@ -177,7 +236,10 @@ function updatePomodoroSessions(){
         span.classList.add('pomodoro__pic');
         pomdoroGoals.appendChild(span);  
     }
+    isGoalsSet = true;
+    lengthSessions = pomodroSessionsLength() - 1;
 }
+     
 function removePreviousSessions(pomdoroGoals){
     if(pomdoroGoals.children.length > 0) {
         pomdoroGoals.innerHTML = '';
